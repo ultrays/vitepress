@@ -16,9 +16,11 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // 初始化烟花效果
-    setTimeout(() => {
-      new Fireworks()
-    }, 100)
+    // 仅在浏览器环境中初始化烟花效果（避免SSR错误）
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      setTimeout(() => {
+        new Fireworks()
+      }, 100)
+    }
   }
 } satisfies Theme
